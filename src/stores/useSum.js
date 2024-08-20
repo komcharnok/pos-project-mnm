@@ -32,7 +32,16 @@ const useSum = create((set) => ({
         const subtotal = rows.reduce((acc, item) => acc + item.money, 0);
         const discount = rows.reduce((acc, item) => acc + item.cupon, 0);
         return { subtotal, discount, total: subtotal - discount };
-    })
+    }),
+
+    calSum: (id) => {
+        const state = useSum.getState();
+        const item = state.rows.find((row) => row.id === id);
+        if (item) {
+            return (item.money * item.quantity) - item.cupon;
+        }
+        return 0; // คืนค่า 0 หากไม่พบรายการ
+    },
 }));
 
 export default useSum;

@@ -13,10 +13,12 @@ import useSum from '../../../stores/useSum';
 
 
 function TableSale() {
-  const { rows } = useSum();
+  const rows = useSum((state) => state.rows); // ดึงข้อมูล rows จาก Zustand
+  const calSum = useSum((state) => state.calSum); // ดึงฟังก์ชัน calSum จาก Zustand
+
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
     setData(rows);
@@ -61,49 +63,55 @@ function TableSale() {
           <button className='bg-white  shadow-xl p-2 rounded-r-2xl text-black hover:bg-slate-50 px-8'>ค้นหา</button>
         </div>
         <div className='flex flex-col gap-3 border rounded-4xl shadow-xl bg-white'>
-            <TableContainer sx={{ maxHeight: 600 }} className='h-[600px] bg-white'>
-              <Table stickyHeader aria-label="sticky table"  >
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="right">ที่</TableCell>
-                    <TableCell align="center" className='w-40'>บาร์โค๊ต</TableCell>
-                    <TableCell align="center" className='w-70'>ชื่อสินค้า</TableCell>
-                    <TableCell align="center" className='w-12'>จำนวน</TableCell>
-                    <TableCell align="center" className='w-20'>ราคา</TableCell>
-                    <TableCell align="center" className='w-20'>ส่วนลด</TableCell>
-                    <TableCell align="center" className='w-20'>รวม</TableCell>
-                    <TableCell align="center">แก้ไข</TableCell>
-                    <TableCell align="center">ลบ</TableCell>
+          <TableContainer sx={{ maxHeight: 600 }} className='h-[600px] bg-white'>
+            <Table stickyHeader aria-label="sticky table"   >
+              <TableHead>
+                <TableRow>
+                  <TableCell align="right">ที่</TableCell>
+                  <TableCell align="center" className='w-40'>บาร์โค๊ต</TableCell>
+                  <TableCell align="center" className='w-70'>ชื่อสินค้า</TableCell>
+                  <TableCell align="center" className='w-20'>ราคา</TableCell>
+                  <TableCell align="center" className='w-20'>จำนวน</TableCell>
+                  <TableCell align="center" className='w-20'>ส่วนลด</TableCell>
+                  <TableCell align="center" className='w-20'>รวม</TableCell>
+                  {/* <TableCell align="center">แก้ไข</TableCell> */}
+                  <TableCell align="center" className='w-20'>ลบ</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody >
+                {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                  <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell align="center" className='w-12'>{row.id}</TableCell>
+                    <TableCell align="center">{row.barcode}</TableCell>
+                    <TableCell align="left">{row.product}</TableCell>
+                    <TableCell align="center">{row.money}</TableCell>
+                    <TableCell align="center">
+                      <input type="number" value={row.quantity} className=' w-[34px] border border-stone-200 rounded-sm' />
+                    </TableCell>
+                    <TableCell align="center">{row.cupon}</TableCell>
+                    <TableCell align="center">{calSum(row.id)}</TableCell>
+                    {/* <TableCell align="center">
+                      <button className="btn btn-link">แก้ไข</button>
+                    </TableCell> */}
+                    <TableCell align="center">
+                      <button className="btn btn-link  text-red-500">ลบ</button>
+                    </TableCell>
                   </TableRow>
-                </TableHead>
-                <TableBody >
-                  {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                    <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                      <TableCell align="center" className='w-12'>{row.id}</TableCell>
-                      <TableCell align="center">{row.barcode}</TableCell>
-                      <TableCell align="left">{row.product}</TableCell>
-                      <TableCell align="center">{row.quantity}</TableCell>
-                      <TableCell align="center">{row.money}</TableCell>
-                      <TableCell align="center">{row.cupon}</TableCell>
-                      <TableCell align="center">{row.sum}</TableCell>
-                      <TableCell align="center">แก้ไข</TableCell>
-                      <TableCell align="center">ลบ</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 20, 50, 100]}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              className='bg-white'
-            />
-         
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 20, 50, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            className='bg-white'
+          />
+
         </div>
 
       </div>
