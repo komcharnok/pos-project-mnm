@@ -50,7 +50,7 @@ function PeopleManage() {
         <div className='flex flex-col gap-6 w-full rounded-xl'>
             <div className='flex justify-between'>
                 <div className='w-[1250px] flex justify-between items-center p-4 bg-white rounded-2xl shadow-xl'>
-                    <h1 className='text-center py-3 text-3xl font-semibold text-black/70'>จัดการพนักงาน</h1>
+                    <h1 className='text-center p-1 bg-indigo-200 rounded-xl text-3xl font-semibold text-black/70'>จัดการพนักงาน</h1>
                     <div>
                         <div className="stat flex flex-col items-center">
                             <div className="stat-title text-black/70">{format(currentTime, 'd MMMM yyyy', { locale: th })}</div>
