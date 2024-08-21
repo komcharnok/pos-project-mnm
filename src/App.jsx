@@ -1,6 +1,10 @@
 import { useState } from 'react'
+
+// component 
 import SalePage from './pages/SalePage';
 import ProductManagePage from './pages/ProductManagePage';
+import PeopleManagePage from './pages/PeopleManagePage';
+import TotalSalePage from './pages/TotalSalePage';
 
 
 function App() {
@@ -64,10 +68,10 @@ function App() {
         <ProductManagePage opentap={opentap} />
 
         {/* รายการคำสั่งซื้อ */}
-        {/* <Listorder opentap={opentap} /> */}
+        <PeopleManagePage opentap={opentap} />
 
         {/* ตรวจสอบสถานะการจัดส่ง */}
-        {/* <Statustran opentap={opentap} /> */}
+        <TotalSalePage opentap={opentap} />
 
 
       </div>

@@ -14,7 +14,8 @@ import useSum from '../../stores/useSum';
 function TableProduct() {
     const rows = useSum((state) => state.rows); // ดึงข้อมูล rows จาก Zustand
     const calSum = useSum((state) => state.calSum); // ดึงฟังก์ชัน calSum จาก Zustand
-
+    
+    const [currentTime, setCurrentTime] = useState(new Date());
     const [data, setData] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -33,8 +34,7 @@ function TableProduct() {
         setPage(0);
     };
 
-    const [currentTime, setCurrentTime] = useState(new Date());
-
+    // date 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(new Date());

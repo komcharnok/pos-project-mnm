@@ -12,11 +12,26 @@ import TabList from '@mui/lab/TabList';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 function SumSale() {
   const { subtotal, discount, total, calculateTotal, rows } = useSum();
   const [value, setValue] = useState('1');
   const [money, setMoney] = useState("");
   const [moneyChange, setMoneyChange] = useState(0)
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
 
   useEffect(() => {
@@ -132,7 +147,6 @@ function SumSale() {
       </div>
       <div className='bg-white rounded-2xl  h-auto  p-2 shadow-2xl'>
         <div className=''>
-
           <TabContext value={value}>
             <Box className='border-b-blue-500 flex justify-center'>
               <TabList onChange={handleChange} aria-label="lab API tabs example" >
@@ -143,13 +157,11 @@ function SumSale() {
             <TabPanel value="1" className='w-auto flex justify-center '>
               <div className=' rounded-lg flex flex-col gap-3'>
                 <div className='flex gap-2'>
-                 
                   <Button onClick={hdlTwenty} variant="outlined" href="#contained-buttons" color="success" className='bg-green-800'>20</Button>
                   <Button onClick={hdlfifty} variant="outlined" href="#contained-buttons" color="primary">50</Button>
                   <Button onClick={hdlonehundred} variant="outlined" href="#contained-buttons" color="error">100</Button>
                   <Button onClick={hdlfivehundred} variant="outlined" href="#contained-buttons" color="primary">500</Button>
                   <Button onClick={hdlonethousand} variant="outlined" href="#contained-buttons" color="error">1000</Button>
-
                 </div>
 
                 <div className='flex justify-between'>
@@ -160,22 +172,6 @@ function SumSale() {
                   <p className='bg-red-200 px-1 rounded-xl'>เงินทอน</p>
                   <p className='text-red-600'>{moneyChange}</p>
                 </div>
-
-
-                {/* <div className='grid grid-cols-3 gap-4 mx-auto  '>
-                  <Button onClick={() => setMoney(money + "7")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>7</Button>
-                  <Button onClick={() => setMoney(money + "8")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>8</Button>
-                  <Button onClick={() => setMoney(money + "9")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>9</Button>
-                  <Button onClick={() => setMoney(money + "4")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>4</Button>
-                  <Button onClick={() => setMoney(money + "5")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>5</Button>
-                  <Button onClick={() => setMoney(money + "6")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>6</Button>
-                  <Button onClick={() => setMoney(money + "1")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>1</Button>
-                  <Button onClick={() => setMoney(money + "2")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>2</Button>
-                  <Button onClick={() => setMoney(money + "3")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>3</Button>
-                  <Button onClick={() => setMoney(money + "0")} variant="outlined" href="#contained-buttons" className='w-full h-16' color='success'>0</Button>
-                  <Button variant="outlined" href="#contained-buttons" className='w-full h-16' color='error'>Clr</Button>
-                  <Button variant="outlined" href="#contained-buttons" className='w-full h-16' color='error'>ลบ</Button>
-                </div> */}
                 <div className='flex justify-center items-center '>
                   <div className='grid grid-cols-3 gap-2 w-[260px]  p-4 '>
                     <button onClick={() => setMoney(money + "7")} className=' btn btn-outline border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white text-blue-500 shadow-lg text-[18px] font-semibold    h-16 w-16 '>7</button>
@@ -190,19 +186,37 @@ function SumSale() {
                     <button className=' btn btn-outline border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white text-blue-500 shadow-lg text-[18px] font-semibold    h-16 w-16 '>0</button>
                     <button className=' btn btn-outline border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white text-blue-500 shadow-lg text-[18px] font-semibold    h-16 w-16 '>Clr</button>
                     <button className=' btn btn-outline border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white text-blue-500 shadow-lg text-[18px] font-semibold    h-16 w-16 '>D</button>
-                    
-                   
-                    
                   </div>
-
                 </div>
-
                 <div className='flex mx-auto'>
-                  <button className='btn btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white shadow-lg  rounded-2xl  w-[224px]  h-12'>ชำระเงิน</button>
+                  <button onClick={handleClickOpen} className='btn btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white shadow-lg  rounded-2xl  w-[224px]  h-12'>ชำระเงิน</button>
+
+                  {/* dialog  */}
+                  <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">
+                      {"Use Google's location service?"}
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Let Google help apps determine location. This means sending anonymous
+                        location data to Google, even when no apps are running.
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose}>Disagree</Button>
+                      <Button onClick={handleClose} autoFocus>Agree</Button>
+                    </DialogActions>
+                  </Dialog>
+
                 </div>
               </div>
             </TabPanel>
-            <TabPanel value="2">Item Two</TabPanel>
+            <TabPanel value="2">พร้อมเพย์</TabPanel>
           </TabContext>
         </div>
       </div>
