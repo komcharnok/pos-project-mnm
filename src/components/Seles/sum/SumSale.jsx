@@ -13,10 +13,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+// import DialogActions from '@mui/material/DialogActions';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogContentText from '@mui/material/DialogContentText';
+// import DialogTitle from '@mui/material/DialogTitle';
 
 function SumSale() {
   const { subtotal, discount, total, calculateTotal, rows } = useSum();
@@ -198,19 +198,81 @@ function SumSale() {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                   >
-                    <DialogTitle id="alert-dialog-title">
-                      {"Use Google's location service?"}
-                    </DialogTitle>
-                    <DialogContent>
-                      <DialogContentText id="alert-dialog-description">
-                        Let Google help apps determine location. This means sending anonymous
-                        location data to Google, even when no apps are running.
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={handleClose}>Disagree</Button>
-                      <Button onClick={handleClose} autoFocus>Agree</Button>
-                    </DialogActions>
+                    <div className='bg-white w-[450px] h-[600px] p-8 flex flex-col justify-between'>
+
+                      {/* content  */}
+                      <div>
+                        {/* รายการคำสั่งซื้อ  */}
+                        <div className='flex justify-center mb-12 bg-red-300'>
+                          <h1>รายการคำสั่งซื้อที่ 86</h1>
+                        </div>
+
+                        {/*  สินค้า  */}
+                        <div className='flex flex-col gap-2 bg-blue-200'>
+                          <div className='flex justify-between '>
+                            <p>สินค้าที่ 1</p>
+                            <p>x 1</p>
+                            <p>80 $ </p>
+                          </div>
+                          <div className='flex justify-between '>
+                            <p>สินค้าที่ 1</p>
+                            <p>x 1</p>
+                            <p>80 $ </p>
+                          </div>
+                          <div className='flex justify-between '>
+                            <p>สินค้าที่ 1</p>
+                            <p>x 1</p>
+                            <p>80 $ </p>
+                          </div>
+                          <div className='flex justify-between '>
+                            <p>สินค้าที่ 1</p>
+                            <p>x 1</p>
+                            <p>80 $ </p>
+                          </div>
+                          <div className='flex justify-between '>
+                            <p>สินค้าที่ 1</p>
+                            <p>x 1</p>
+                            <p>80 $ </p>
+                          </div>
+                        </div>
+
+                        {/*  รายละเอียดใบเสร็จ  */}
+                        <div className='mt-8  w-1/2 ml-auto'>
+
+                          {/* ยอดชำระ */}
+                          <div className='flex justify-between'>
+                            <p className='font-light'>ยอดรวมย่อย</p>
+                            <p className='font-light'>910</p>
+                          </div>
+                          <div className='flex justify-between'>
+                            <p className='font-light'>ส่วนลด</p>
+                            <p className='font-light'>910</p>
+                          </div>
+                          <div className='flex justify-between'>
+                            <p className='font-light'>ทั้งหมด</p>
+                            <p className='font-light'>910</p>
+                          </div>
+
+                        </div>
+
+                        {/* เงินสด เงินทอน */}
+                        <div className='mt-3  w-1/2 ml-auto'>
+                          <div className='flex justify-between'>
+                            <p>เงินสด</p>
+                            <p>910</p>
+                          </div>
+                          <div className='flex justify-between'>
+                            <p>เงินทอน</p>
+                            <p>910</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* ปุ่ม  */}
+                      <div className=''>
+                        <button className='btn btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white shadow-lg  rounded-2xl w-full'>ชำระเงิน</button>
+                      </div>
+                    </div>
                   </Dialog>
 
                 </div>

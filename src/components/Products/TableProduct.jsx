@@ -80,7 +80,7 @@ function TableProduct() {
                     {/* <Button variant="contained" className='bg-white'>ค้นหา</Button> */}
                     <input type="text" placeholder="Type here" className="input input-bordered w-full shadow-xl bg-white " />
                     <button className='bg-white  shadow-xl p-2  text-black hover:bg-slate-50 px-8'>ค้นหา</button>
-                    <button className='bg-white  shadow-xl p-2   text-black hover:bg-slate-50 px-8 w-52'>เพิ่มหมวดหมู่</button>
+                    <button className='bg-white  shadow-xl p-2   text-black hover:bg-slate-50 px-8 w-52'>หมวดหมู่สินค้า</button>
                     <button className='bg-white  shadow-xl p-2 rounded-r-2xl  text-black hover:bg-slate-50 px-8 w-52'>เพิ่มสินค้า</button>
                 </div>
                 <div className='flex flex-col gap-3 border rounded-4xl shadow-xl bg-white'>
