@@ -4,35 +4,15 @@ import * as React from 'react';
 
 
 // UI components 
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField } from '@mui/material';
+import {  Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
 
 // date-time
 import { th } from 'date-fns/locale';
 import { format } from 'date-fns';
-import useSum from '../../../stores/useSum';
 
 
 function TableSale() {
-  const rows = useSum((state) => state.rows); // ดึงข้อมูล rows จาก Zustand
-  const calSum = useSum((state) => state.calSum); // ดึงฟังก์ชัน calSum จาก Zustand
-
-  const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  useEffect(() => {
-    setData(rows);
-  }, [rows])
-
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  
 
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -40,14 +20,13 @@ function TableSale() {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className='flex flex-col gap-6 w-[1110px]  rounded-xl'>
       <div className='w-[1110px] flex justify-between items-center  p-4  bg-white rounded-2xl shadow-xl'>
-        <h1 className='text-center p-1 text-3xl font-semibold text-black/70 bg-indigo-200 rounded-xl'>การขาย</h1>
+        <h1 className='text-center px-1 bg-indigo-200 rounded-xl text-3xl font-semibold text-black/70'>การขาย</h1>
         <div>
           <div className="stat flex flex-col items-center">
             <div className="stat-title text-black/70">{format(currentTime, 'd   MMMM   yyyy ', { locale: th })}</div>
@@ -57,8 +36,6 @@ function TableSale() {
       </div>
       <div className='flex flex-col gap-2'>
         <div className='flex gap-2'>
-          {/* <TextField id="outlined-search" label="Search field" type="search" className='w-full bg-white' size="small" /> */}
-          {/* <Button variant="contained" className='bg-white'>ค้นหา</Button> */}
           <input type="text" placeholder="Type here" className="input input-bordered w-full shadow-xl bg-white " />
           <button className='bg-white  shadow-xl p-2 rounded-r-2xl text-black hover:bg-slate-50 px-8'>ค้นหา</button>
         </div>
@@ -74,34 +51,29 @@ function TableSale() {
                   <TableCell align="center" className='w-20'>จำนวน</TableCell>
                   <TableCell align="center" className='w-20'>ส่วนลด</TableCell>
                   <TableCell align="center" className='w-20'>รวม</TableCell>
-                  {/* <TableCell align="center">แก้ไข</TableCell> */}
                   <TableCell align="center" className='w-20'>ลบ</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody >
-                {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                  <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                    <TableCell align="center" className='w-12'>{row.id}</TableCell>
-                    <TableCell align="center">{row.barcode}</TableCell>
-                    <TableCell align="left">{row.product}</TableCell>
-                    <TableCell align="center">{row.money}</TableCell>
+                  <TableRow  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell align="center" className='w-12'></TableCell>
+                    <TableCell align="center"></TableCell>
+                    <TableCell align="left"></TableCell>
+                    <TableCell align="center"></TableCell>
                     <TableCell align="center">
-                      <input type="number" value={row.quantity} className=' w-[34px] border border-stone-200 rounded-sm' />
+                      {/* <input type="number" value="" className=' w-[34px] border border-stone-200 rounded-sm' /> */}
                     </TableCell>
-                    <TableCell align="center">{row.cupon}</TableCell>
-                    <TableCell align="center">{calSum(row.id)}</TableCell>
-                    {/* <TableCell align="center">
-                      <button className="btn btn-link">แก้ไข</button>
-                    </TableCell> */}
+                    <TableCell align="center"></TableCell>
+                    <TableCell align="center"></TableCell>
                     <TableCell align="center">
-                      <button className="btn btn-link  text-red-500">ลบ</button>
+                      {/* <button className="btn btn-link  text-red-500">ลบ</button> */}
                     </TableCell>
                   </TableRow>
-                ))}
+               
               </TableBody>
             </Table>
           </TableContainer>
-          <TablePagination
+          {/* <TablePagination
             rowsPerPageOptions={[5, 10, 20, 50, 100]}
             component="div"
             count={rows.length}
@@ -110,10 +82,8 @@ function TableSale() {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
             className='bg-white'
-          />
-
+          /> */}
         </div>
-
       </div>
     </div>
   )

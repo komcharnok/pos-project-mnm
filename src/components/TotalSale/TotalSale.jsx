@@ -21,7 +21,7 @@ function TotalSale() {
         <div className='flex flex-col gap-6 w-full  rounded-xl'>
             <div className='flex justify-between'>
                 <div className='w-[1250px] flex justify-between items-center  p-4  bg-white rounded-2xl shadow-xl'>
-                    <h1 className='text-center p-1 bg-red-200 rounded-xl text-3xl font-semibold text-black/70'>รายงานการขาย</h1>
+                    <h1 className='text-center px-1 bg-red-200 rounded-xl text-3xl font-semibold text-black/70'>รายงานการขาย</h1>
                     <div>
                         <div className="stat flex flex-col items-center">
                             <div className="stat-title text-black/70">{format(currentTime, 'd   MMMM   yyyy ', { locale: th })}</div>
@@ -46,12 +46,12 @@ function TotalSale() {
                 </div>
             </div>
             <div className='flex flex-col gap-2'>
-                {/* <div className='flex gap-2'>
-                    <input type="text" placeholder="Type here" className="input input-bordered w-full shadow-xl bg-white " />
-                    <button className='bg-white  shadow-xl p-2  text-black hover:bg-slate-50 px-8'>ค้นหา</button>
-                    <button className='bg-white  shadow-xl p-2   text-black hover:bg-slate-50 px-8 w-52'>เพิ่มหมวดหมู่</button>
-                    <button className='bg-white  shadow-xl p-2 rounded-r-2xl  text-black hover:bg-slate-50 px-8 w-52'>เพิ่มสินค้า</button>
-                </div> */}
+                <div className='flex gap-2 ml-auto'>
+                    {/* <input type="text" placeholder="Type here" className="input input-bordered w-full shadow-xl bg-white " /> */}
+                    {/* <button className='bg-white  shadow-xl p-2  text-black hover:bg-slate-50 px-8'>ค้นหา</button> */}
+                    {/* <button className='bg-white  shadow-xl p-2   text-black hover:bg-slate-50 px-8 w-52'>เพิ่มหมวดหมู่</button> */}
+                    <button className='bg-white  shadow-xl p-2   text-black hover:bg-slate-50 px-8 w-52'>เพิ่มยอดรายการ</button>
+                </div>
                 <div className='flex flex-col gap-3 border rounded-4xl shadow-xl bg-white h-[666px]'>
                     <div className='flex flex-col items-center justify-center  h-[666px]'>
                         <PieChart

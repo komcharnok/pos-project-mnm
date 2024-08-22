@@ -67,10 +67,10 @@ function App() {
         {/* จัดการสินค้า */}
         <ProductManagePage opentap={opentap} />
 
-        {/* รายการคำสั่งซื้อ */}
+        {/* จัดการพนักงาน */}
         <PeopleManagePage opentap={opentap} />
 
-        {/* ตรวจสอบสถานะการจัดส่ง */}
+        {/* รายงานการขาย */}
         <TotalSalePage opentap={opentap} />
 
 

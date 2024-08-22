@@ -1,9 +1,11 @@
+```jsx
+
 import { useState, useEffect } from 'react';
 import * as React from 'react';
 
 // UI components 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
-// import Dialog from '@mui/material/Dialog';
+import Dialog from '@mui/material/Dialog';
 
 // date-time
 import { th } from 'date-fns/locale';
@@ -11,23 +13,25 @@ import { format } from 'date-fns';
 
 // api 
 import useProduct from '../../stores/useProduct';
-import FormAddProduct from './FormAddProduct';
 
 function TableProduct() {
+    // Get state and action from Zustand store
     const { products, fetchDataProduct } = useProduct(state => ({
         products: state.products,
         fetchDataProduct: state.fetchDataProduct
     }));
-
+    
     const [currentTime, setCurrentTime] = useState(new Date());
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [open, setOpen] = useState(false);
 
+    // Fetch product data on component mount
     useEffect(() => {
         fetchDataProduct();
     }, [fetchDataProduct]);
 
+    // Update current time every second
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(new Date());
@@ -36,11 +40,16 @@ function TableProduct() {
         return () => clearInterval(interval);
     }, []);
 
+    // Handle dialog open and close
     const handleClickOpen = () => {
-        setOpen(!open);
+        setOpen(true);
     };
 
+    const handleClose = () => {
+        setOpen(false);
+    };
 
+    // Handle pagination
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -88,7 +97,59 @@ function TableProduct() {
                     </select>
                     <button onClick={handleClickOpen} className='bg-white shadow-xl p-2 rounded-r-2xl text-black hover:bg-slate-50 px-8 w-52'>เพิ่มสินค้า</button>
 
-                    <FormAddProduct handleClickOpen={handleClickOpen} open={open} />
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <div className='bg-white w-[500px] h-[600px] p-8 flex flex-col justify-between'>
+                            <div className='flex flex-col gap-2'>
+                                <div className='flex justify-center mb-8'>
+                                    <h1 className='text-[20px]'>เพิ่มสินค้า</h1>
+                                </div>
+                                <div className='flex justify-between items-end'>
+                                    <p>รหัสบาร์โค้ต</p>
+                                    <input type="text" placeholder="" className="input input-bordered input-sm w-full max-w-xs" />
+                                </div>
+                                <div className='flex justify-between items-end'>
+                                    <p>ชื่อสินค้า</p>
+                                    <input type="text" placeholder="" className="input input-bordered input-sm w-full max-w-xs" />
+                                </div>
+                                <div className='flex justify-between items-end'>
+                                    <p>ประเภท</p>
+                                    <select className="select select-bordered select-sm w-full max-w-xs">
+                                        <option value="" disabled>เลือกประเภทสินค้า</option>
+                                        <option value="เครื่องดื่ม">เครื่องดื่ม</option>
+                                        <option value="ของใช้ทั่วไป">ของใช้ทั่วไป</option>
+                                    </select>
+                                </div>
+                                <div className='flex justify-between items-end'>
+                                    <p>หน่วย</p>
+                                    <select className="select select-bordered select-sm w-full max-w-xs">
+                                        <option value="" disabled>หน่วยสินค้า</option>
+                                        <option value="ชิ้น">ชิ้น</option>
+                                        <option value="แพค">แพค</option>
+                                    </select>
+                                </div>
+                                <div className='flex justify-between items-end'>
+                                    <p>จำนวนสินค้า</p>
+                                    <input type="text" placeholder="" className="input input-bordered input-sm w-full max-w-xs" />
+                                </div>
+                                <div className='flex justify-between items-end'>
+                                    <p>ราคาปลีก</p>
+                                    <input type="text" placeholder="" className="input input-bordered input-sm w-full max-w-xs" />
+                                </div>
+                                <div className='flex justify-between items-end'>
+                                    <p>ส่วนลด</p>
+                                    <input type="text" placeholder="" className="input input-bordered input-sm w-full max-w-xs" />
+                                </div>
+                            </div>
+                            <div className='flex justify-center gap-2'>
+                                <button className='btn bg-green-500 hover:bg-green-600 border-none rounded-2xl w-full shadow-lg'>บันทึก</button>
+                            </div>
+                        </div>
+                    </Dialog>
                 </div>
                 <div className='flex flex-col gap-3 border rounded-4xl shadow-xl bg-white'>
                     <TableContainer sx={{ maxHeight: 600 }} className='h-[600px] bg-white'>

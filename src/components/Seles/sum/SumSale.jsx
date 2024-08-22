@@ -203,69 +203,68 @@ function SumSale() {
                       {/* content  */}
                       <div>
                         {/* รายการคำสั่งซื้อ  */}
-                        <div className='flex justify-center mb-12 bg-red-300'>
-                          <h1>รายการคำสั่งซื้อที่ 86</h1>
+                        <div className='flex justify-center mb-12'>
+                          <h1 className='text-[18px]'>รายการคำสั่งซื้อที่ 86</h1>
                         </div>
 
                         {/*  สินค้า  */}
-                        <div className='flex flex-col gap-2 bg-blue-200'>
+                        <div className='flex flex-col gap-2 p-2 bg-stone-50 rounded-2xl '>
                           <div className='flex justify-between '>
-                            <p>สินค้าที่ 1</p>
-                            <p>x 1</p>
-                            <p>80 $ </p>
+                            <p className='font-light'>สินค้าที่ 1</p>
+                            <p className='font-light'>x 1</p>
+                            <p className='font-light'>80 $ </p>
                           </div>
                           <div className='flex justify-between '>
-                            <p>สินค้าที่ 1</p>
-                            <p>x 1</p>
-                            <p>80 $ </p>
+                            <p className='font-light'>สินค้าที่ 1</p>
+                            <p className='font-light'>x 1</p>
+                            <p className='font-light'>80 $ </p>
                           </div>
                           <div className='flex justify-between '>
-                            <p>สินค้าที่ 1</p>
-                            <p>x 1</p>
-                            <p>80 $ </p>
+                            <p className='font-light'>สินค้าที่ 1</p>
+                            <p className='font-light'>x 1</p>
+                            <p className='font-light'>80 $ </p>
                           </div>
                           <div className='flex justify-between '>
-                            <p>สินค้าที่ 1</p>
-                            <p>x 1</p>
-                            <p>80 $ </p>
+                            <p className='font-light'>สินค้าที่ 1</p>
+                            <p className='font-light'>x 1</p>
+                            <p className='font-light'>80 $ </p>
                           </div>
                           <div className='flex justify-between '>
-                            <p>สินค้าที่ 1</p>
-                            <p>x 1</p>
-                            <p>80 $ </p>
+                            <p className='font-light'>สินค้าที่ 1</p>
+                            <p className='font-light'>x 1</p>
+                            <p className='font-light'>80 $ </p>
                           </div>
                         </div>
 
                         {/*  รายละเอียดใบเสร็จ  */}
-                        <div className='mt-8  w-1/2 ml-auto'>
+                        <div className='mt-8  w-1/2 ml-auto bg-stone-50 p-1 rounded-2xl'>
 
                           {/* ยอดชำระ */}
                           <div className='flex justify-between'>
-                            <p className='font-light'>ยอดรวมย่อย</p>
+                            <p className=''>ยอดรวมย่อย</p>
                             <p className='font-light'>910</p>
                           </div>
                           <div className='flex justify-between'>
-                            <p className='font-light'>ส่วนลด</p>
+                            <p className=''>ส่วนลด</p>
                             <p className='font-light'>910</p>
                           </div>
                           <div className='flex justify-between'>
-                            <p className='font-light'>ทั้งหมด</p>
+                            <p className=''>ทั้งหมด</p>
                             <p className='font-light'>910</p>
                           </div>
 
-                        </div>
-
-                        {/* เงินสด เงินทอน */}
-                        <div className='mt-3  w-1/2 ml-auto'>
-                          <div className='flex justify-between'>
-                            <p>เงินสด</p>
-                            <p>910</p>
+                          {/* เงินสด เงินทอน */}
+                          <div className='flex justify-between mt-2'>
+                            <p className=''>เงินสด</p>
+                            <p className='font-light'>910</p>
                           </div>
                           <div className='flex justify-between'>
                             <p>เงินทอน</p>
-                            <p>910</p>
+                            <p className='font-light'>910</p>
                           </div>
                         </div>
+
+                      
                       </div>
 
                       {/* ปุ่ม  */}
